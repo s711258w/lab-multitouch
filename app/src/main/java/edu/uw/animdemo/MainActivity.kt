@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         when (action) {
             MotionEvent.ACTION_DOWN //put finger down
             -> {
-                //Log.v(TAG, "finger down");
+                Log.v(TAG, "finger down");
 
                 val xAnim = ObjectAnimator.ofFloat(view!!.ball, "x", x)
                 xAnim.duration = 1000
@@ -65,11 +65,30 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             MotionEvent.ACTION_MOVE //move finger
-            ->
-                //Log.v(TAG, "finger move");
+            -> {
+                Log.v(TAG, "finger move");
                 //                view.ball.cx = x;
                 //                view.ball.cy = y;
                 return true
+            }
+            MotionEvent.ACTION_POINTER_DOWN //move finger
+            -> {
+                val num = MotionEventCompat.getActionIndex(event)
+                Log.v("pointerindex", num.toString())
+                val id = MotionEventCompat.getPointerId(event, num)
+                Log.v("pointerid", id.toString())
+                Log.v(TAG, "multiple fingers down");
+                //                view.ball.cx = x;
+                //                view.ball.cy = y;
+                return true
+            }
+            MotionEvent.ACTION_POINTER_UP //move finger
+            -> {
+                Log.v(TAG, "multiple fingers up");
+                //                view.ball.cx = x;
+                //                view.ball.cy = y;
+                return true
+            }
             MotionEvent.ACTION_UP //lift finger up
                 , MotionEvent.ACTION_CANCEL //aborted gesture
                 , MotionEvent.ACTION_OUTSIDE //outside bounds

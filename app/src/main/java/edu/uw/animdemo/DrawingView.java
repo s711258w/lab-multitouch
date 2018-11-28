@@ -40,7 +40,6 @@ public class DrawingView extends View {
 
     public DrawingView(Context context, AttributeSet attrs, int defaultStyle) {
         super(context, attrs, defaultStyle);
-
         viewWidth = 1; viewHeight = 1; //positive defaults; will be replaced when #onSizeChanged() is called
 
         //set up drawing variables ahead of time
